@@ -4,30 +4,38 @@
       <div>
         <section-title name="about us" title="curabitur nisl lorem" />
         <div class="btn-custom-group my-4">
-          <button class="corner-button active">
+          <button
+            class="corner-button"
+            :class="{ active: slide == 0 }"
+            @click="slide = 0"
+          >
             <span>SOLLICOTUDIN</span>
           </button>
-          <button class="corner-button"><span>EU VIVERRA</span></button>
-          <button class="corner-button"><span>VENETIS VARIUS</span></button>
+          <button
+            class="corner-button"
+            :class="{ active: slide == 1 }"
+            @click="slide = 1"
+          >
+            <span>EU VIVERRA</span>
+          </button>
+          <button
+            class="corner-button"
+            :class="{ active: slide == 2 }"
+            @click="slide = 2"
+          >
+            <span>VENETIS VARIUS</span>
+          </button>
         </div>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua
         </p>
-        <div
-          class="d-flex flex-column flex-lg-row align-items-center justify-content-lg-center my-5"
-        >
-          <button-circle icon="sliders-h" />
-          <button-circle icon="exclamation-circle" />
-        </div>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem
-          ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua
-        </p>
+        <b-carousel id="carousel-1" v-model="slide" :interval="4000" indicators>
+          <b-carousel-slide><carousel-item /></b-carousel-slide>
+          <b-carousel-slide><carousel-item /></b-carousel-slide>
+          <b-carousel-slide><carousel-item /></b-carousel-slide>
+        </b-carousel>
       </div>
-      <paginate type="dark" />
     </b-container>
   </div>
 </template>
@@ -38,6 +46,10 @@ $bg-orange: #fdb935;
 .second-section {
   background-color: #{$bg-orange};
   position: relative;
+
+  .carousel-caption {
+    position: unset;
+  }
 
   &:after {
     content: "";
@@ -118,15 +130,18 @@ $bg-orange: #fdb935;
 </style>
 
 <script>
-import paginate from "@/components/navigation/Paginate";
-import buttonCircle from "@/components/buttons/ButtonCircle";
 import sectionTitle from "@/components/landing/SectionTitle";
+import carouselItem from "@/components/landing/CarouselItemTwo";
 
 export default {
   components: {
-    paginate,
-    buttonCircle,
-    sectionTitle
+    sectionTitle,
+    carouselItem
+  },
+  data() {
+    return {
+      slide: 0
+    };
   }
 };
 </script>
