@@ -11,7 +11,8 @@
             <div
               v-for="(opt, index) in options"
               :key="index"
-              :class="{ inactive: activeSlide != index }"
+              :class="{ inactive: slide != index }"
+              @click="slide = index"
               class="cursor-pointer py-2 text-left border-bottom"
             >
               <h3>{{ opt.title }}</h3>
@@ -21,7 +22,7 @@
           <b-col lg="6">
             <b-carousel
               ref="myCarousel"
-              v-model="activeSlide"
+              v-model="slide"
               no-animation
               no-indicators
             >
@@ -62,6 +63,10 @@
   .inactive {
     opacity: 0.6;
   }
+
+  .cursor-pointer {
+    cursor: pointer;
+  }
 }
 </style>
 
@@ -70,7 +75,7 @@ export default {
   components: {},
   data() {
     return {
-      activeSlide: 0,
+      slide: 0,
       options: [
         {
           title: "Sed Posor Le Nanin aqua",
